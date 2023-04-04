@@ -6,10 +6,12 @@ void main(List<String> args) {
   int StuId = 5414060;
   int answer;
   int MenuNumber = 0;
-  print(
-      "\nProgram to calculate areas of \n     1 –- square \n     2 -- rectangle \n     3 -- circle \n     4 -- right triangle \n     5 -- quit");
-  stdout.write("Choose a valid menu: ");
-  MenuNumber = int.parse(stdin.readLineSync()!);
+  while (1 > MenuNumber || MenuNumber > 5) {
+    print(
+        "\nProgram to calculate areas of \n     1 –- square \n     2 -- rectangle \n     3 -- circle \n     4 -- right triangle \n     5 -- quit");
+    stdout.write("Choose a valid menu: ");
+    MenuNumber = int.parse(stdin.readLineSync()!);
+  }
   switch (MenuNumber) {
     case 1:
       stdout.write("Square Diameter : ");

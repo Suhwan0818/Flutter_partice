@@ -8,19 +8,17 @@ class bank_account {
     nowInputMoney = 0;
   }
 
-  setAccount(String accountType) => name = accountType;
-
-  setMoneyAmount(int nowMoneyAmount) => totalMoney = nowMoneyAmount;
-
-  setMoneyInputAmount(int nowInputMoneyAmount) => {
+  void setMoneyInputAmount(int nowInputMoneyAmount) => {
         totalMoney = (totalMoney! + nowInputMoneyAmount),
         nowInputMoney = nowInputMoneyAmount
       };
 
-  setMoneyMinusAmount(int nowMinusMoney) => {
+  void setMoneyMinusAmount(int nowMinusMoney) => {
         totalMoney = (totalMoney! - nowMinusMoney),
         nowInputMoney = nowMinusMoney
       };
-  displayTotal() => print('Now your account have $totalMoney dallor');
-  displayInput() => print('Now you put in the $nowInputMoney dallor');
+
+  void setMonthLater() => {};
+  void displayTotal() => print('Now your account have $totalMoney dallor');
+  void displayInput() => print('Now you put in the $nowInputMoney dallor');
 }

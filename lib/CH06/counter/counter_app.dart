@@ -52,6 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _updateSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _counter = (prefs.getInt('counter') ?? 0) + 1;
+    print('Pressed $_counter times');
+    await prefs.setInt('counter', _counter);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButtonKMU(
               onPressed: _resetCounter,
               buttonText: "Reset",
+            ),
+            TextButtonKMU(
+              onPressed: _updateSharedPreferences,
+              buttonText: "Update",
             )
           ],
         ));

@@ -1,4 +1,6 @@
+import 'package:fl_5414060/CH06/counter/text_button.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   MyApp defaultApp = MyApp();
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightGreen,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -60,8 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
+              Theme(
+                data: Theme.of(context).copyWith(cardColor: Colors.deepOrange),
+                child: Card(child: Text('copyWith Theme')),
               ),
               Text(
                 '$_counter',
@@ -73,15 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            FloatingActionButton(
+            TextButtonKMU(
               onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
+              buttonText: "Add",
             ),
-            FloatingActionButton(
+            TextButtonKMU(
               onPressed: _decrementCounter,
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
+              buttonText: "Minus",
+            ),
+            TextButtonKMU(
+              onPressed: _resetCounter,
+              buttonText: "Reset",
             )
           ],
         ));

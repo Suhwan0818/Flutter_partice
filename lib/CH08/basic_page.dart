@@ -183,45 +183,47 @@ class ColumnWidget extends StatelessWidget {
 class ContainerWithBoxDecorationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(100.0),
-            bottomRight: Radius.circular(10.0),
-          ),
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.white,
-                Colors.lightGreen.shade500,
-              ])),
-      child: RichText(
-          text: TextSpan(
-              text: "Sean World",
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Colors.deepPurple,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.deepPurpleAccent,
-                decorationStyle: TextDecorationStyle.dotted,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.normal,
-              ),
-              children: <TextSpan>[
-            TextSpan(
-              text: ' for',
+    return Center(
+      child: Container(
+        height: 100.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(100.0),
+              bottomRight: Radius.circular(10.0),
             ),
-            TextSpan(
-              text: " Mobile",
-              style: TextStyle(
-                color: Colors.deepOrange,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.bold,
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white,
+                  Colors.lightGreen.shade500,
+                ])),
+        child: RichText(
+            text: TextSpan(
+                text: "Sean World",
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.deepPurple,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.deepPurpleAccent,
+                  decorationStyle: TextDecorationStyle.dotted,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.normal,
+                ),
+                children: <TextSpan>[
+              TextSpan(
+                text: ' for',
               ),
-            )
-          ])),
+              TextSpan(
+                text: " Mobile",
+                style: TextStyle(
+                  color: Colors.deepOrange,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ])),
+      ),
     );
   }
 }

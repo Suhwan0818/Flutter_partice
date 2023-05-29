@@ -9,6 +9,6 @@ class DBApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.lightBlue), home: DBPage());
+        theme: ThemeData(primarySwatch: Colors.lightBlue), home: StudentPage());
   }
 }

@@ -1,6 +1,6 @@
 class Student {
-  int? id;
-  String? name;
+  late int id;
+  late String name;
   Student(this.id, this.name);
 
   Map<String, dynamic> toMap() {
@@ -11,7 +11,7 @@ class Student {
     return map;
   }
 
-  Student.fromMap(Map<dynamic, dynamic> map) {
+  Student.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
   }

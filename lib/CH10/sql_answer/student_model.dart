@@ -1,6 +1,6 @@
 class Student {
   int? id;
-  late String name;
+  String? name;
   Student(this.id, this.name);
 
   Map<String, dynamic> toMap() {

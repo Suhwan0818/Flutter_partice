@@ -1,19 +1,17 @@
-import 'package:fl_5414060/CH10/sql/db_helper.dart';
 import 'package:flutter/material.dart';
-import 'db_model.dart';
+import 'student_model.dart';
+import 'db_helper.dart';
 
 class StudentPage extends StatefulWidget {
-  const StudentPage({super.key});
-
   @override
-  State<StudentPage> createState() => _StudentPageState();
+  _StudentPageState createState() => _StudentPageState();
 }
 
 class _StudentPageState extends State<StudentPage> {
   final GlobalKey<FormState> _formStateKey = GlobalKey<FormState>();
   Future<List<Student>>? students;
-  late int studentIdForUpdate;
-  late String _studentName;
+  int? studentIdForUpdate;
+  String? _studentName;
   bool isUpdate = false;
   DBHelper? dbHelper;
   final _studentNameController = TextEditingController();
@@ -27,10 +25,11 @@ class _StudentPageState extends State<StudentPage> {
 
   refreshStudentList() {
     setState(() {
-      students = dbHelper?.getStudents();
+      students = dbHelper!.getStudents();
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -46,11 +45,13 @@ class _StudentPageState extends State<StudentPage> {
               child: TextFormField(
                 validator: (value) =>
                     value!.isEmpty ? 'Please Enter Student Name' : null,
-                onSaved: (value) => _studentName = value!,
+                onSaved: (value) => _studentName = value,
                 controller: _studentNameController,
-                decoration: InputDecoration(
-                    labelText: "student Nmae",
-                    labelStyle: TextStyle(color: Colors.lightGreen)),
+                decoration: const InputDecoration(
+                    labelText: "Student Name",
+                    labelStyle: TextStyle(
+                      color: Colors.lightGreen,
+                    )),
               ),
             ),
           ),
@@ -68,38 +69,40 @@ class _StudentPageState extends State<StudentPage> {
                     if (_formStateKey.currentState!.validate()) {
                       _formStateKey.currentState!.save();
                       dbHelper!
-                          .update(Student(studentIdForUpdate, _studentName))
+                          .update(Student(studentIdForUpdate!, _studentName!))
                           .then((data) {
                         setState(() {
                           isUpdate = false;
                         });
                       });
-                    } else {
-                      if (_formStateKey.currentState!.validate()) {
-                        _formStateKey.currentState!.save();
-                        dbHelper!.add(Student(null, _studentName));
-                      }
                     }
-                    _studentNameController.text = '';
-                    refreshStudentList();
+                  } else {
+                    if (_formStateKey.currentState!.validate()) {
+                      _formStateKey.currentState!.save();
+                      dbHelper!.add(Student(null, _studentName!));
+                    }
                   }
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                  );
-                  TextButton(
-                    child: Text(
-                      ('CANCEL'),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      _studentNameController.text = '';
-                      setState(() {
-                        studentIdForUpdate = null;
-                      });
-                    },
-                  );
+                  _studentNameController.text = '';
+                  refreshStudentList();
                 },
-              )
+              ),
+              const Padding(
+                padding: EdgeInsets.all(10),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(backgroundColor: Colors.red),
+                child: const Text(
+                  ("CANCEL"),
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  _studentNameController.text = '';
+                  setState(() {
+                    //isUpdate = false;
+                    studentIdForUpdate = null;
+                  });
+                },
+              ),
             ],
           ),
           const Divider(
@@ -124,13 +127,13 @@ class _StudentPageState extends State<StudentPage> {
     );
   }
 
-  SingleChildScrollView generateList(List<Student>? students) {
+  Widget generateList(List<Student>? students) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: SizedBox(
         width: double.infinity,
         child: DataTable(
-          columns: [
+          columns: const [
             DataColumn(
               label: Text('NAME'),
             ),
@@ -143,20 +146,20 @@ class _StudentPageState extends State<StudentPage> {
                 (student) => DataRow(
                   cells: [
                     DataCell(
-                      Text(student.name),
+                      Text(student.name!),
                       onTap: () {
                         setState(() {
                           isUpdate = true;
-                          studentIdForUpdate = student.id!;
+                          studentIdForUpdate = student.id;
                         });
-                        _studentNameController.text = student.name;
+                        _studentNameController.text = student.name!;
                       },
                     ),
                     DataCell(
                       IconButton(
                         icon: Icon(Icons.delete),
                         onPressed: () {
-                          dbHelper?.delete(student.id!);
+                          dbHelper!.delete(student.id!);
                           refreshStudentList();
                         },
                       ),

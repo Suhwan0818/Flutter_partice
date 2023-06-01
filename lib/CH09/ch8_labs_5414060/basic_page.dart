@@ -323,20 +323,15 @@ class BottomBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-        color: Colors.lightGreen.shade500,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Icon(Icons.pause),
-            Icon(Icons.stop),
-            Icon(Icons.access_time),
-            Padding(
-              padding: EdgeInsets.all(32.0),
-            ),
-          ],
-        ),
-      ),
+    return Container(
+      color: Colors.lightGreen.shade400,
+      padding: EdgeInsets.only(top: 10, bottom: 10),
+      child:
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+        Icon(Icons.map),
+        Icon(Icons.car_repair),
+        Icon(Icons.brush),
+      ]),
     );
   }
 }

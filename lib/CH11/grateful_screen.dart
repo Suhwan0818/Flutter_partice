@@ -8,9 +8,9 @@ class GratefulScreen extends StatefulWidget {
 }
 
 class _GratefulScreenState extends State<GratefulScreen> {
-  void _radioChanged(int index) {
+  void _radioOnChanged(int? index) {
     setState(() {
-      _radioGrounpValue = index;
+      _radioGrounpValue = index!;
       _selectedGrateful = _gratefulList[index];
       print('_selectedRadioValue $_selectedGrateful');
     });
@@ -43,7 +43,25 @@ class _GratefulScreenState extends State<GratefulScreen> {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(),
+        child: Row(
+          children: [
+            RadioMenuButton<int>(
+                value: 0,
+                groupValue: _radioGrounpValue,
+                onChanged: _radioOnChanged,
+                child: Text("Family")),
+            RadioMenuButton<int>(
+                value: 1,
+                groupValue: _radioGrounpValue,
+                onChanged: _radioOnChanged,
+                child: Text("Friends")),
+            RadioMenuButton<int>(
+                value: 2,
+                groupValue: _radioGrounpValue,
+                onChanged: _radioOnChanged,
+                child: Text("Coffee")),
+          ],
+        ),
       )),
     );
   }

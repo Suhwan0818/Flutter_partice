@@ -1,3 +1,4 @@
+import 'package:fl_5414060/CH11/grateful_screen.dart';
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
 
@@ -9,6 +10,7 @@ class NavigatorHomeScreen extends StatefulWidget {
 }
 
 class _NavigatorHomeScreenState extends State<NavigatorHomeScreen> {
+  String _howAreYou = '...';
   void _openAboutScreen(
       {required BuildContext context, bool fullscreenDialog = false}) {
     Navigator.push(
@@ -21,7 +23,17 @@ class _NavigatorHomeScreenState extends State<NavigatorHomeScreen> {
   }
 
   void _openGratefulScreen(
-      {required BuildContext context, bool fullscreenDialog = false}) async {}
+      {required BuildContext context, bool fullscreenDialog = false}) async {
+    final String _gratefulResponse = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          fullscreenDialog: fullscreenDialog,
+          builder: (context) => GratefulScreen()),
+    );
+    setState(() {
+      _howAreYou = _gratefulResponse ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

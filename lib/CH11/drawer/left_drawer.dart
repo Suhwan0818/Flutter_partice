@@ -10,7 +10,25 @@ class LeftDrawerWiget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(),
+          UserAccountsDrawerHeader(
+            currentAccountPicture: Icon(
+              Icons.face,
+              size: 48.0,
+              color: Colors.white,
+            ),
+            accountName: Text('Sean Kim'),
+            accountEmail: Text('Suhwan.Sean@gmail.com'),
+            otherAccountsPictures: <Widget>[
+              Icon(
+                Icons.bookmark_border,
+                color: Colors.white,
+              )
+            ],
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/home_top_moutain.jpg'),
+                    fit: BoxFit.cover)),
+          ),
           const MenuListTitleWidget(),
         ],
       ),

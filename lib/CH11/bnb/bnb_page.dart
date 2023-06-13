@@ -1,6 +1,6 @@
 import "package:fl_5414060/CH11/bnb/birthday_screen.dart";
 import "package:fl_5414060/CH11/bnb/reminder_screen.dart";
-import "package:fl_5414060/CH11/grateful_screen.dart";
+import "package:fl_5414060/CH11/bnb/grateful_screen.dart";
 import "package:flutter/material.dart";
 
 class BNBHomeScreen extends StatefulWidget {

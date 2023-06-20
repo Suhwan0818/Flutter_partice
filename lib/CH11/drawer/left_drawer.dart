@@ -26,7 +26,7 @@ class LeftDrawerWiget extends StatelessWidget {
             ],
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/home_top_moutain.jpg'),
+                    image: AssetImage("assets/images/hometopmountain.jpg"),
                     fit: BoxFit.cover)),
           ),
           const MenuListTitleWidget(),
